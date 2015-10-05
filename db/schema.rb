@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005184101) do
+ActiveRecord::Schema.define(version: 20151005192358) do
 
   create_table "course_photos", force: :cascade do |t|
     t.integer  "photo_id"
@@ -26,12 +26,11 @@ ActiveRecord::Schema.define(version: 20151005184101) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.integer  "mealtime_id"
-    t.integer  "course_photo_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.integer  "course_photo_id"
   end
 
-  add_index "courses", ["course_photo_id"], name: "index_courses_on_course_photo_id"
   add_index "courses", ["mealtime_id"], name: "index_courses_on_mealtime_id"
 
   create_table "dishes", force: :cascade do |t|
@@ -52,12 +51,12 @@ ActiveRecord::Schema.define(version: 20151005184101) do
   end
 
   create_table "photos", force: :cascade do |t|
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
 end
