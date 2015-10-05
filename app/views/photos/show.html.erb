@@ -2,7 +2,12 @@
 
 <p>
   <strong>Path:</strong>
-  <%= image_tag @photo.photo.url %>
+  <%= image_tag @photo.picture.url %>
+</p>
+
+<p>
+  <strong>Caption:</strong>
+  <%= @photo.caption %>
 </p>
 
 <%= link_to 'Edit', edit_photo_path(@photo) %> |

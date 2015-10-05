@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+$susy: (
+  columns: 12,
+  gutters: .25,
+  container: 960px
+);
+
+.content {
+  @include container;
+}

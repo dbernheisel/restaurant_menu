@@ -1,7 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  path: MyString
+  picture_file_name: some.url
+  caption: something something something
+
 
 two:
-  path: MyString
+  picture_file_name: some.url
+  caption: something something something

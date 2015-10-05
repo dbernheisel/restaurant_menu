@@ -1,4 +1,4 @@
 class Course < ActiveRecord::Base
   belongs_to :mealtime
-  belongs_to :course_photo
+  has_one :course_photo
 end
