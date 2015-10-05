@@ -11,17 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005192358) do
+ActiveRecord::Schema.define(version: 20151005192359) do
 
-  create_table "course_photos", force: :cascade do |t|
-    t.integer  "photo_id"
-    t.integer  "course_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "course_photo", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "photo_id",  null: false
   end
-
-  add_index "course_photos", ["course_id"], name: "index_course_photos_on_course_id"
-  add_index "course_photos", ["photo_id"], name: "index_course_photos_on_photo_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -57,6 +52,7 @@ ActiveRecord::Schema.define(version: 20151005192358) do
     t.datetime "photo_updated_at"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "course_photo_id"
   end
 
 end

@@ -1,5 +1,5 @@
 class CreateJoinTableCoursePhoto < ActiveRecord::Migration
   def change
-    create_join_table :courses, :photos
+    create_join_table :course, :photo
   end
 end
