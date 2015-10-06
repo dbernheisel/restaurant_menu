@@ -1,4 +1,9 @@
 class Course < ActiveRecord::Base
   belongs_to :mealtime
-  has_one :course_photo
+  belongs_to :photo
+  has_many :dishes
+  delegate :picture, :capion, to: :photo
+  delegate :name, to: :mealtime, prefix: true
+  validates :name, uniqueness: true
+
 end

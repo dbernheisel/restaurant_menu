@@ -1,14 +1,12 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_helpers, only: [:edit, :new, :create]
   # GET /courses
-  # GET /courses.json
   def index
     @courses = Course.all
   end
 
   # GET /courses/1
-  # GET /courses/1.json
   def show
   end
 
@@ -18,11 +16,10 @@ class CoursesController < ApplicationController
   end
 
   # GET /courses/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /courses
-  # POST /courses.json
   def create
     @course = Course.new(course_params)
 
@@ -36,7 +33,6 @@ class CoursesController < ApplicationController
   end
 
   # PATCH/PUT /courses/1
-  # PATCH/PUT /courses/1.json
   def update
     respond_to do |format|
       if @course.update(course_params)
@@ -48,7 +44,6 @@ class CoursesController < ApplicationController
   end
 
   # DELETE /courses/1
-  # DELETE /courses/1.json
   def destroy
     @course.destroy
     respond_to do |format|
@@ -62,8 +57,14 @@ class CoursesController < ApplicationController
       @course = Course.find(params[:id])
     end
 
+    def set_helpers
+      @photos = Photo.all
+      @mealtimes = Mealtime.all
+    end
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name, :mealtime_id, :course_photo_id)
+      params.require(:course).permit(:name, :mealtime_id, :photo_id)
     end
 end

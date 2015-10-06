@@ -23,7 +23,8 @@ module Restaurant
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.paperclip_defaults = { storage: :fog, fog_credentials: { provider: "Local", local_root: "#{Rails.root}/public"}, fog_directory: "", fog_host: "localhost"}
-
+    Paperclip::Attachment.default_options.merge!(
+        url:  ":s3_domain_url",
+        path: "/:class/:attachment/:id_partition/:style/:filename" )
   end
 end

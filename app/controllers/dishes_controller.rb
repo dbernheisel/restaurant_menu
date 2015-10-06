@@ -1,20 +1,24 @@
 class DishesController < ApplicationController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
+  # before_action :set_helpers, only: [:edit, :new, :create]
 
   # GET /dishes
-  # GET /dishes.json
   def index
     @dishes = Dish.all
   end
 
   # GET /dishes/1
-  # GET /dishes/1.json
   def show
+    respond_to do |format|
+      format.html { render "dishes/form" }
+    end
   end
 
   # GET /dishes/new
   def new
     @dish = Dish.new
+    @courses = Course.all
+    @course = @courses.find(params[:course_id])
   end
 
   # GET /dishes/1/edit
@@ -22,7 +26,6 @@ class DishesController < ApplicationController
   end
 
   # POST /dishes
-  # POST /dishes.json
   def create
     @dish = Dish.new(dish_params)
 
@@ -36,7 +39,6 @@ class DishesController < ApplicationController
   end
 
   # PATCH/PUT /dishes/1
-  # PATCH/PUT /dishes/1.json
   def update
     respond_to do |format|
       if @dish.update(dish_params)
@@ -48,7 +50,6 @@ class DishesController < ApplicationController
   end
 
   # DELETE /dishes/1
-  # DELETE /dishes/1.json
   def destroy
     @dish.destroy
     respond_to do |format|

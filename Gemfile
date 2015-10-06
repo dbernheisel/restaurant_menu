@@ -20,6 +20,9 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'puma'
 gem 'susy'
+gem 'aws-sdk-v1'
+gem 'image-picker-rails'
+gem "font-awesome-rails"
 
 
 # Use ActiveModel has_secure_password
@@ -33,8 +36,8 @@ gem 'susy'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
   gem 'sqlite3'
+  gem 'faker'
 end
 
 group :development do
@@ -43,6 +46,7 @@ group :development do
   gem 'rails-footnotes', '~> 4.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'byebug'
 end
 
 group :production do

@@ -14,7 +14,7 @@
   <tbody>
     <% @photos.each do |photo| %>
       <tr>
-        <td><%= photo.picture_file_name %></td>
+        <td><%= image_tag photo.picture.url(:thumb) %></td>
         <td><%= photo.caption %></td>
         <td><%= link_to 'Show', photo %></td>
         <td><%= link_to 'Edit', edit_photo_path(photo) %></td>

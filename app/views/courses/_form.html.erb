@@ -15,15 +15,44 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label :mealtime_id %><br>
-    <%= f.text_field :mealtime_id %>
+  <%= f.label :mealtime_id %><br/>
+    <%= link_to(new_mealtime_path) do %>
+    <i class="fa fa-plus-square"></i>
+    <% end %>
+    <%= f.collection_select(:mealtime_id, @mealtimes, :id, :name) if @mealtimes %>
   </div>
+
   <div class="field">
-    <%= f.label :photo_id %><br>
-    <%= f.text_field :photo_id %>
+
+    <%= f.label :photo_id %><br/>
+    <%= link_to(new_photo_path) do %>
+    <i class="fa fa-cloud-upload"></i>
+    <% end %>
+    <%= f.select :photo_id, options_for_select(
+      @photos.map { |p| [p.caption, p.id, {"data-image-src" => p.picture.url(:medium) }]} ), {},
+      { class: "image-picker masonry show-labels" } %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
+
+  <script>
+    // Execute the Image Picker
+    $("#course_photo_id").imagepicker({show_label: true, hide_select: false});
+
+    // Better align uneven images
+    var container = jQuery("#course_photo_id").next("ul.thumbnails");
+    container.imagesLoaded(function(){
+      container.masonry({
+        itemSelector:   "li",
+      });
+    });
+  </script>
 <% end %>
+
+
+

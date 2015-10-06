@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151005192358) do
+ActiveRecord::Schema.define(version: 20151006035526) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -19,8 +19,10 @@ ActiveRecord::Schema.define(version: 20151005192358) do
     t.integer  "photo_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "dish_id"
   end
 
+  add_index "courses", ["dish_id"], name: "index_courses_on_dish_id"
   add_index "courses", ["mealtime_id"], name: "index_courses_on_mealtime_id"
 
   create_table "dishes", force: :cascade do |t|

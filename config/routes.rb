@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+
+  root 'dishes#index'
   resources :photos
   resources :mealtimes
-  resources :courses
-  resources :dishes
+  resources :courses do
+    resources :dishes, shallow: true
+  end
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

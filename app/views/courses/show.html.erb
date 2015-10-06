@@ -7,13 +7,15 @@
 
 <p>
   <strong>Mealtime:</strong>
-  <%= @course.mealtime %>
+  <%= @course.mealtime_name %>
 </p>
 
 <p>
-  <strong>Course photo:</strong>
-  <%= @course.photo_id %>
+  <strong>Photo:</strong><br/>
+  <%= image_tag @course.photo.picture.url(:medium) %>
 </p>
 
-<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Create new dish', new_course_dish_path(course_id: @course.id) %>
+<%= render partial: "dishes/list", locals: {course: @course} %>
+|
 <%= link_to 'Back', courses_path %>

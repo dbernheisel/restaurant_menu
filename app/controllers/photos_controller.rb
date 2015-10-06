@@ -22,6 +22,7 @@ class PhotosController < ApplicationController
   # POST /photos
   def create
     @photo = Photo.new(photo_params)
+    @photo.picture = params[:photo][:picture]
 
     respond_to do |format|
       if @photo.save
@@ -47,12 +48,13 @@ class PhotosController < ApplicationController
   def destroy
     @photo.picture = nil
     @photo.save
-    @photo.destroy
     respond_to do |format|
-      format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      if @photo.destroy
+        format.html { redirect_to photos_url, notice: 'Photo was successfully destroyed.' }
+      else
+        format.html { render :edit }
+      end
     end
-    @photo.photo = nil
-    @photo.save
   end
 
   private
@@ -63,6 +65,7 @@ class PhotosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def photo_params
-      params.require(:photo).permit(:photo_id, :caption)
+      params.require(:photo).permit(:photo_id, :picture, :caption)
+
     end
 end

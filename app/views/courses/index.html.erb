@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Mealtime</th>
-      <th>Course photo</th>
+      <th>Course Name</th>
+      <th>Meal Time</th>
+      <th>Photo</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +16,8 @@
     <% @courses.each do |course| %>
       <tr>
         <td><%= course.name %></td>
-        <td><%= course.mealtime %></td>
-        <td><%= course.photo_id %></td>
+        <td><%= course.mealtime_name %></td>
+        <td><%= image_tag course.photo.picture.url(:thumb) if course.photo %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
