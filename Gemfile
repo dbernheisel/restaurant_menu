@@ -22,7 +22,8 @@ gem 'puma'
 gem 'susy'
 gem 'aws-sdk-v1'
 gem 'image-picker-rails'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'faker'
 
 
 # Use ActiveModel has_secure_password
@@ -37,7 +38,6 @@ gem "font-awesome-rails"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'sqlite3'
-  gem 'faker'
 end
 
 group :development do

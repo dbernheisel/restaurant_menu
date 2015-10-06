@@ -11,7 +11,7 @@
   <tbody>
     <% course.dishes.each do |dish| %>
       <tr>
-        <td><%= link_to dish.name, [:edit, @course, @dish] %></td>
+        <td><%= link_to dish.name, edit_dish_path(dish, course_id: @course.id) %></td>
         <td><%= number_to_currency(dish.price) %></td>
         <td><%= dish.description %></td>
         <td><%= link_to 'Show', dish %></td>

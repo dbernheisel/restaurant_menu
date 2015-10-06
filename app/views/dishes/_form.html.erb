@@ -1,5 +1,5 @@
 
-<%= form_for [@course, @dish] do |f| %>
+<%= form_for @dish do |f| %>
   <% if @dish.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@dish.errors.count, "error") %> prohibited this dish from being saved:</h2>
@@ -27,7 +27,7 @@
     <%= link_to(new_course_path) do %>
     <i class="fa fa-plus-square"></i>
     <% end %>
-    <%= select_tag :course_id, options_from_collection_for_select(@courses, 'id', 'name', selected: params[:course_id]), d %>
+    <%= select_tag :course_id, options_from_collection_for_select(@courses, 'id', 'name', selected: params[:course_id] || @dish.course.id), d %>
   </div>
 
 

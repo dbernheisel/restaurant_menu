@@ -1,7 +1,10 @@
 class DishesController < ApplicationController
   before_action :set_dish, only: [:show, :edit, :update, :destroy]
-  # before_action :set_helpers, only: [:edit, :new, :create]
+  before_action :set_course, only: [:edit, :new, :create]
 
+  def all_courses
+    @courses ||= Course.all
+  end
   # GET /dishes
   def index
     @dishes = Dish.all
@@ -9,20 +12,17 @@ class DishesController < ApplicationController
 
   # GET /dishes/1
   def show
-    respond_to do |format|
-      format.html { render "dishes/form" }
-    end
   end
 
   # GET /dishes/new
   def new
-    @dish = Dish.new
-    @courses = Course.all
-    @course = @courses.find(params[:course_id])
+    @dish = Dish.new()
   end
 
   # GET /dishes/1/edit
   def edit
+    set_course
+    set_dish
   end
 
   # POST /dishes
@@ -61,6 +61,10 @@ class DishesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_dish
       @dish = Dish.find(params[:id])
+    end
+    def set_course
+      @courses = all_courses
+      @course = (@courses.find(params[:course_id]) if params[:course_id]) || @dish.course
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
