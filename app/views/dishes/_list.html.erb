@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% course.dishes.each do |dish| %>
+      <tr>
+        <td><%= link_to dish.name, [:edit, @course, @dish] %></td>
+        <td><%= number_to_currency(dish.price) %></td>
+        <td><%= dish.description %></td>
+        <td><%= link_to 'Show', dish %></td>
+        <td><%= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
