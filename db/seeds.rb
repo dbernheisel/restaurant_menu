@@ -6,33 +6,55 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-foods = ["Taramasalata",
-"Olives and olive oil",
-"Dolmades",
-"Moussaka",
-"Grilled meat",
-"Fresh fish",
-"Courgette balls (kolokythokeftedes)",
-"Octopus",
-"Feta and cheeses",
-"Honey and baklava",
-"Tuna Melts",
-"Ratatouille",
-"Creamed Spinach",
-"Roast Chicken",
-"Ice Cream",
-"Spaghetti and Meatballs",
-"Pie",
-"Chocolate Pudding",
-"Baked Ziti",
-"Biscuits and Gravy"]
+Mealtime.destroy_all
+Course.destroy_all
+Dish.destroy_all
 
-courses = Course.all
+foods = [ "Taramasalata",
+          "Olives and olive oil",
+          "Dolmades",
+          "Moussaka",
+          "Grilled meat",
+          "Fresh fish",
+          "Courgette balls (kolokythokeftedes)",
+          "Octopus",
+          "Feta and cheeses",
+          "Honey and baklava",
+          "Tuna Melts",
+          "Ratatouille",
+          "Creamed Spinach",
+          "Roast Chicken",
+          "Ice Cream",
+          "Spaghetti and Meatballs",
+          "Pie",
+          "Chocolate Pudding",
+          "Baked Ziti",
+          "Biscuits and Gravy"]
+
+mealtimes = ["Breakfast", "Lunch", "Dinner", "Midnight Fat Attack",
+  "2nd Breakfast", "Secondsies", "Linner", "Dunch"]
+
+mealtimes.each do |m|
+  Mealtime.create!(name: m)
+end
+@mealtimes = Mealtime.all
+
+courses = [ "Meats", "Desserts", "Salads", "Weirds", "Vegs", "Sides",
+"chickens", "air"]
+courses.each do |c|
+  Course.create!(
+    name: c,
+    mealtime_id: @mealtimes.sample.id,
+  )
+end
+@courses = Course.all
 
 foods.each do |f|
   Dish.create!(
-    name: f,
+    name: f << rand(1000).to_s,
     price: Faker::Number.decimal(2),
-    course_id: courses.sample.id,
+    course_id: @courses.sample.id,
     description: Faker::Lorem.paragraph)
 end
+
+
